@@ -242,7 +242,7 @@ class GoogleCloudStorage(BaseStorage):
         """
         name = self._normalize_name(clean_name(name))
         blob = self.bucket.blob(name)
-        
+        print(setting("GS_CUSTOM_ENDPOINT"))
         return blob.public_url
 
         #if not self.custom_endpoint and self.default_acl == 'publicRead':
