@@ -106,7 +106,7 @@ class GoogleCloudStorage(BaseStorage):
             "expiration": setting('GS_EXPIRATION', timedelta(seconds=86400)),
             "file_overwrite": setting('GS_FILE_OVERWRITE', True),
             "cache_control": setting('GS_CACHE_CONTROL'),
-            "public_url": setting('GS_ALLOW_PUBLIC_URL', True),
+            "public_url": setting('GS_USE_PUBLIC_URL', True),
             # The max amount of memory a returned file can take up before being
             # rolled over into a temporary file on disk. Default is 0: Do not
             # roll over.
