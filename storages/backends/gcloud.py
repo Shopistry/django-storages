@@ -243,23 +243,22 @@ class GoogleCloudStorage(BaseStorage):
         name = self._normalize_name(clean_name(name))
         blob = self.bucket.blob(name)
         
-        if self.public_url == True:
-            return blob.public_url
+        return blob.public_url
 
-        if not self.custom_endpoint and self.default_acl == 'publicRead':
-            return blob.public_url
-        elif self.default_acl == 'publicRead':
-            return '{storage_base_url}/{quoted_name}'.format(
-                storage_base_url=self.custom_endpoint,
-                quoted_name=_quote(name, safe=b"/~"),
-            )
-        elif not self.custom_endpoint:
-            return blob.generate_signed_url(self.expiration)
-        else:
-            return blob.generate_signed_url(
-                expiration=self.expiration,
-                api_access_endpoint=self.custom_endpoint,
-            )
+        #if not self.custom_endpoint and self.default_acl == 'publicRead':
+        #    return blob.public_url
+        #elif self.default_acl == 'publicRead':
+        #    return '{storage_base_url}/{quoted_name}'.format(
+        #        storage_base_url=self.custom_endpoint,
+        #        quoted_name=_quote(name, safe=b"/~"),
+        #    )
+        #elif not self.custom_endpoint:
+        #    return blob.generate_signed_url(self.expiration)
+        #else:
+        #    return blob.generate_signed_url(
+        #        expiration=self.expiration,
+        #        api_access_endpoint=self.custom_endpoint,
+        #    )
 
     def get_available_name(self, name, max_length=None):
         name = clean_name(name)
