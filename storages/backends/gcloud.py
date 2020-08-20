@@ -242,7 +242,10 @@ class GoogleCloudStorage(BaseStorage):
         """
         name = self._normalize_name(clean_name(name))
         blob = self.bucket.blob(name)
-        print(setting("GS_CUSTOM_ENDPOINT"))
+        print(setting("GS_CUSTOM_ENDPOINT", "https://assets-maplelather.shopistry.com"))
+        custom_url = '{storage_base_url}/{quoted_name}'.format(
+                storage_base_url=self.custom_endpoint,
+                quoted_name=_quote(name, safe=b"/~"))
         return blob.public_url
 
         #if not self.custom_endpoint and self.default_acl == 'publicRead':
